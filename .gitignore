@@ -19,6 +19,9 @@ DerivedData
 # CocoaPod
 Pods/*
 
+# idea
+.idea/
+
 # others
 *.swp
 !.gitkeep
