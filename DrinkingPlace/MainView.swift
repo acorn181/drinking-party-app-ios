@@ -12,11 +12,12 @@ struct MainView: View {
     @State private var station1: String = ""
     @State private var station2: String = ""
     @State private var station3: String = ""
+    @State var isActive = false
 
     var body: some View {
+
         NavigationView {
             VStack {
-                Text("アプリ名")
                 TextField("駅1", text: $station1)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 TextField("駅2", text: $station2)
@@ -26,10 +27,12 @@ struct MainView: View {
                 Button("+") {
                     print("+ボタンが押された")
                 }
-                NavigationLink(destination: MapView()) {
-                    Text("検索")
-                }
-            }
+                NavigationLink(
+                        destination: MapView(isActive: $isActive),
+                        isActive: $isActive,
+                        label: { Button(action: { self.isActive = true }, label: { Text("検索") }) })
+            }.navigationBarTitle("アプリ名")
+                    .padding(.bottom)
         }
     }
 }
